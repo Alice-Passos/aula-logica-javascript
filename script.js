@@ -1,74 +1,69 @@
-
-//Exercício 1: Sistema de Cadastro de Funcionários (Classes)
-class Funcionario {
-  constructor(nome, cargo, salario) {
-    this.nome = nome;
-    this.cargo = cargo;
-    this.salario = salario;
-  }
+//Maratona 4
+// 1-Execício Laço For:
+for (let minuto = 30; minuto > 0; minuto--){
+    console.log(`Faltam ${minuto} minuto(s) para o fechamento.`);
+}
+console.log("A sorveteria está fechada");
  
-  aumentarSalario(porcentagem) {
-    this.salario += this.salario * (porcentagem / 100);
-  }
+// 2-Exercício While
+let clientes = 0;
+let MáximoDeClientes = 50;
  
-  exibirInfo() {
-    console.log(`Nome: ${this.nome}`);
-    console.log(`Cargo: ${this.cargo}`);
-    console.log(`Salário: R$ ${this.salario.toFixed(2)}`);
+while(clientes < MáximoDeClientes){
+    clientes++;
+    console.log(`${clientes} cliente(s) entrou(aram) sorveteria.`);
+}
+console.log("A sorveteria está cheia");
+//Maratona 5
+// 1-Exercício de vetor
+let Temperaturas = [29, 24, 18, 30, 27];
+ 
+for (let i = 0; i < Temperaturas.length; i++ ){
+    console.log(`${Temperaturas[i]} °C`);
+ 
+}
+let soma = 0;
+for (let temp of Temperaturas){
+    soma += temp;
+}
+let media = soma / Temperaturas.length;
+console.log(`Temperatura Média da semana: ${media.toFixed(2)}°C`);
+ 
+// 2-Exercício de Matriz
+ 
+let temperaturas = [
+  [16.0, 17.5, 18.0], // São Paulo
+  [21.0, 22.0, 20.5], // Rio de Janeiro
+  [18.0, 19.0, 19.5]  // Mogi das Cruzes
+];
+ 
+let cidades = ["São Paulo", "Rio de Janeiro", "Mogi das Cruzes"];
+ 
+console.log("Temperaturas durante 3 dias:");
+for (let i = 0; i < temperaturas.length; i++) {
+  let linha = `${cidades[i]}: `;
+  for (let j = 0; j < temperaturas[i].length; j++) {
+    linha += `${temperaturas[i][j]}°C `;
   }
+  console.log(linha);
 }
  
-const funcionario1 = new Funcionario("Ana Paula", "Analista de Segurança da Informação", 5250);
-funcionario1.aumentarSalario(15);
-funcionario1.exibirInfo();
- 
- 
-//Exercício 2: Sistema de Cadastro de Produtos
-// Classe base: Produto
-class Produto {
-  constructor(nome, preco, quantidade) {
-    this.nome = nome;
-    this.preco = preco;
-    this.quantidade = quantidade;
+console.log("\nMédia de temperatura por cidade:");
+for (let i = 0; i < temperaturas.length; i++) {
+  let soma = 0;
+  for (let j = 0; j < temperaturas[i].length; j++) {
+    soma += temperaturas[i][j];
   }
- 
-  exibirInfo() {
-    console.log(`Produto: ${this.nome}`);
-    console.log(`Preço: R$ ${this.preco.toFixed(2)}`);
-    console.log(`Quantidade em estoque: ${this.quantidade}`);
-  }
+  let mediatemp = soma / temperaturas[i].length;
+  console.log(`Média de ${cidades[i]}: ${mediatemp.toFixed(2)}°C`);
 }
  
-// Classe Alimento (herda de Produto)
-class Alimento extends Produto {
-  constructor(nome, preco, quantidade, dataValidade) {
-    super(nome, preco, quantidade);
-    this.dataValidade = dataValidade;
-  }
+// 3-Exercício de ordenação de vetor
+let precos = [19.90, 5.50, 12.30, 25.00, 8.75];
+precos.sort((a, b) => a - b);
  
-  exibirInfo() {
-    super.exibirInfo();
-    console.log(`Data de validade: ${this.dataValidade}`);
-  }
+console.log("Preços em ordem crescente:");
+for (let preco of precos) {
+ 
+  console.log(`R$ ${preco.toFixed(2)}`);
 }
- 
-// Classe Eletrodomestico (herda de Produto)
-class Eletrodomestico extends Produto {
-  constructor(nome, preco, quantidade, voltagem) {
-    super(nome, preco, quantidade);
-    this.voltagem = voltagem;
-  }
- 
-  exibirInfo() {
-    super.exibirInfo();
-    console.log(`Voltagem: ${this.voltagem}V`);
-  }
-}
- 
-const macarrao = new Alimento("Macarrão", 4.5, 100, "16-07-2025");
-console.log("=== Alimento ===");
-macarrao.exibirInfo();
- 
-const microOndas = new Eletrodomestico("Micro-Ondas",750, 15, 220);
-console.log("\n=== Eletrodoméstico ===");
-microOndas.exibirInfo();
