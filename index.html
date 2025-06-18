@@ -1,27 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Calcular Média (com erro)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média</title>
 </head>
-<body>
-  <h1>Média das Notas</h1>
-  <p id="resultado"></p>
- 
-  <script>
-    function calcularMedia(notas) {
-      let soma = 0;
-      for (let i = 0; i < notas.length; i++) {
-        soma += notas[i];
-      }
-      return soma / notas.length;
+<!-- CSS Internal (estiliza o html)-->
+ <style>
+    body{
+        font-family: Arial, sans-serif;
+        background: #f0f2f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px;
     }
-// //O índice i está sendo incrementado até i <= notas.length, o que faz com que ele acesse notas[3],
- //que não existe (os índices válidos são 0, 1 e 2).
- // Isso resulta em undefined sendo somado com os outros números, e a soma acaba se tornando NaN.
-    let notas = [7, 8, 9];
-    let media = calcularMedia(notas);
-    document.getElementById("resultado").textContent = "A média é: " + media;
+    h1{
+        color: #333;
+    }
+
+    .form-container{
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label, input {
+        display: block;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
+    input[type= "number"]{
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button{
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    #resultado{
+        margin-top: 20px;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+ </style>
+<body>
+   <h1>Calculadora de Média</h1>
+   <div class = "form-container">
+    <label for= "nota1">Nota 1:</label>
+    <input type="number" id = "nota1" min = "0" max = "10" step = "0.1">
+
+    <label for = "nota2">Nota 2:</label>
+    <input type = "number" id= "nota2" min = "0" max = "10" steps = "0.1">
+
+    <label for = "nota3">Nota 3:</label>
+    <input type = "number" id = "nota3" min = "0" max = "10" steps = "0.1">
+  
+    <button onclick="calcularMedia()">Calcular Média</button>
+  
+    <div id = "resultado"></div>
+  
+  </div>
+
+  <script>
+    function calcularMedia(){
+        const nota1 = parseFloat(document.getElementById("nota1").value);
+        const nota2 = parseFloat(document.getElementById('nota2').value);
+        const nota3 = parseFloat(document.getElementById("nota3").value);
+    
+        if(isNaN(nota1) || isNaN(nota2) || isNaN(nota3)){
+            document.getElementById("resultado").innerText= "Por favor insira todas as notas corretamente";
+            return;
+        }
+
+        const media = (nota1 + nota2 + nota3) / 3;
+        document.getElementById("resultado").innerText = `Média: ${media.toFixed(2)}`;
+    }
+    //float é número com casa decimal
+    //isNaN = is not an number, se tiver vazio vai reconhecer q ñ é número então vai aparecer a frase
+    // não deixa colocar letras pq é do tipo number
   </script>
+
 </body>
 </html>
